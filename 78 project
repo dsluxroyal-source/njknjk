@@ -1,0 +1,45 @@
+import os
+def generate_document():
+    print("\n===== Auto Document Generator =====")
+    name = input("Enter your name: ").strip()
+    age = input("Enter your age: ").strip()
+    course = input("Enter your course: ").strip()
+    institute = input("Enter your school/college: ").strip()
+    city = input("Enter your city: ").strip()
+    if not name or not age or not course or not institute or not city:
+        print("\nPlease fill all fields.")
+        return
+    filename = input("\nEnter document name: ").strip()
+    if not filename:
+        filename = "student_report"
+    if not filename.endswith(".txt"):
+        filename += ".txt"
+    try:
+        with open(filename, "w", encoding="utf-8") as file:
+            file.write("=================================\n")
+            file.write("      STUDENT INFORMATION\n")
+            file.write("=================================\n\n")
+            file.write(f"Name       : {name}\n")
+            file.write(f"Age        : {age}\n")
+            file.write(f"Course     : {course}\n")
+            file.write(f"Institute  : {institute}\n")
+            file.write(f"City       : {city}\n")
+            file.write("\n=================================\n")
+            file.write("Document Generated Successfully")
+            file.write("\n=================================\n")
+        print("\nDocument generated successfully.")
+        print("Saved as:", os.path.abspath(filename))
+    except Exception as e:
+        print("Error:", e)
+while True:
+    print("\n========== MENU ==========")
+    print("1. Generate Document")
+    print("2. Exit")
+    choice = input("Enter your choice: ")
+    if choice == "1":
+        generate_document()
+    elif choice == "2":
+        print("Goodbye!")
+        break
+    else:
+        print("Invalid choice. Try again.")
